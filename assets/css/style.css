@@ -1,0 +1,245 @@
+/* WITSR — Why Is This So Ridiculous?  Site stylesheet.
+   Colours follow the game's "Pop Arcade" menu look: deep purple, gold logo, cyan and pink accents. */
+
+@font-face {
+  font-family: "Lilita One";
+  src: url("../fonts/LilitaOne-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --bg: #f6f3ff;
+  --surface: #ffffff;
+  --surface-2: #efeaff;
+  --text: #1d1640;
+  --muted: #5d567f;
+  --line: #ddd5fb;
+  --purple: #4b2fbf;
+  --purple-deep: #2a1b78;
+  --gold: #ffd23f;
+  --cyan: #13cfe0;
+  --pink: #ff4f8b;
+  --shadow: 0 10px 30px rgba(42, 27, 120, 0.12);
+  --radius: 22px;
+  --maxw: 1080px;
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #120c2e;
+    --surface: #1d1547;
+    --surface-2: #261c5c;
+    --text: #f3f0ff;
+    --muted: #b7aee6;
+    --line: #36297a;
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+    color-scheme: dark;
+  }
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 17px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+img { max-width: 100%; height: auto; display: block; }
+
+a { color: var(--purple); text-underline-offset: 3px; }
+@media (prefers-color-scheme: dark) { a { color: #a99bff; } }
+a:focus-visible, .btn:focus-visible { outline: 3px solid var(--cyan); outline-offset: 3px; border-radius: 8px; }
+
+.wrap { width: 100%; max-width: var(--maxw); margin: 0 auto; padding: 0 16px; }
+
+.display { font-family: "Lilita One", system-ui, sans-serif; font-weight: 400; letter-spacing: 0.01em; line-height: 1.1; }
+
+.skip { position: absolute; left: -999px; }
+.skip:focus { left: 16px; top: 16px; background: var(--surface); padding: 8px 12px; z-index: 10; }
+
+/* ---------- Header ---------- */
+.site-header {
+  background: var(--purple-deep);
+  color: #fff;
+}
+.site-header .wrap { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 64px; }
+.brand { display: flex; align-items: center; gap: 10px; color: #fff; text-decoration: none; }
+.brand img { width: 40px; height: 40px; border-radius: 10px; }
+.brand span { font-family: "Lilita One", system-ui, sans-serif; font-size: 1.5rem; color: var(--gold); text-shadow: 0 2px 0 #1a1050; }
+.nav { display: flex; gap: 4px; flex-wrap: wrap; }
+.nav a { color: #e9e4ff; text-decoration: none; padding: 8px 10px; border-radius: 10px; font-weight: 600; font-size: 0.95rem; }
+.nav a:hover, .nav a[aria-current="page"] { background: rgba(255, 255, 255, 0.12); color: #fff; }
+
+/* ---------- Hero ---------- */
+.hero {
+  position: relative;
+  overflow: hidden;
+  color: #fff;
+  text-align: center;
+  background:
+    radial-gradient(1200px 500px at 50% 110%, rgba(19, 207, 224, 0.28), transparent 60%),
+    linear-gradient(180deg, #2a1b78 0%, #4b2fbf 55%, #6a3fd6 100%);
+  padding: 56px 0 64px;
+}
+.hero::after {
+  /* the game's road: a dashed centre line running into the distance */
+  content: "";
+  position: absolute; left: 50%; bottom: 0; width: 10px; height: 120px; transform: translateX(-50%);
+  background: repeating-linear-gradient(180deg, rgba(255, 210, 63, 0.55) 0 18px, transparent 18px 34px);
+  opacity: 0.6;
+}
+.logo {
+  margin: 0;
+  font-family: "Lilita One", system-ui, sans-serif;
+  font-weight: 400;
+  font-size: clamp(4rem, 18vw, 8.5rem);
+  line-height: 1;
+  color: var(--gold);
+  -webkit-text-stroke: 6px #1a1050;
+  paint-order: stroke fill;
+  text-shadow: 0 8px 0 #1a1050, 0 14px 28px rgba(0, 0, 0, 0.35);
+  transform: rotate(-3deg);
+}
+.subtitle { margin: 18px 0 0; font-family: "Lilita One", system-ui, sans-serif; font-size: clamp(1.2rem, 4.6vw, 1.9rem); color: #fff; }
+.tagline { margin: 14px auto 0; max-width: 620px; color: #e3ddff; font-size: 1.08rem; }
+.badges { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin: 22px 0 0; padding: 0; list-style: none; }
+.badges li { background: rgba(255, 255, 255, 0.12); border: 1px solid rgba(255, 255, 255, 0.22); padding: 6px 12px; border-radius: 999px; font-weight: 700; font-size: 0.9rem; }
+.btn {
+  display: inline-block;
+  margin-top: 26px;
+  padding: 14px 26px;
+  border-radius: 16px;
+  background: var(--cyan);
+  color: #0b1d3a;
+  font-family: "Lilita One", system-ui, sans-serif;
+  font-size: 1.25rem;
+  text-decoration: none;
+  box-shadow: 0 6px 0 #0a8f9b;
+}
+.btn:hover { filter: brightness(1.05); }
+.btn:active { transform: translateY(3px); box-shadow: 0 3px 0 #0a8f9b; }
+
+/* ---------- Sections ---------- */
+section { padding: 56px 0; }
+.section-title { font-size: clamp(1.8rem, 6vw, 2.6rem); margin: 0 0 8px; color: var(--purple); }
+@media (prefers-color-scheme: dark) { .section-title { color: var(--gold); } }
+.section-lead { margin: 0 0 28px; color: var(--muted); max-width: 680px; }
+
+.grid { display: grid; gap: 16px; grid-template-columns: 1fr; }
+@media (min-width: 640px) { .grid.two { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 900px) { .grid.four { grid-template-columns: repeat(4, 1fr); } .grid.three { grid-template-columns: repeat(3, 1fr); } }
+@media (min-width: 640px) and (max-width: 899px) { .grid.four { grid-template-columns: repeat(2, 1fr); } }
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 22px;
+  box-shadow: var(--shadow);
+}
+.card h3 { margin: 10px 0 6px; font-family: "Lilita One", system-ui, sans-serif; font-weight: 400; font-size: 1.45rem; }
+.card p { margin: 0; color: var(--muted); }
+.icon-dot {
+  width: 48px; height: 48px; border-radius: 14px; display: grid; place-items: center;
+  font-family: "Lilita One", system-ui, sans-serif; font-size: 1.5rem; color: #fff;
+}
+.c-cyan { background: var(--cyan); color: #0b1d3a; }
+.c-pink { background: var(--pink); }
+.c-gold { background: var(--gold); color: #3a2a00; }
+.c-purple { background: var(--purple); }
+
+/* ---------- Screenshots ---------- */
+/* Phones: one row that scrolls sideways. Wider screens: four across. */
+.shots {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 62%;
+  gap: 14px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 10px;
+  -webkit-overflow-scrolling: touch;
+}
+@media (min-width: 640px) { .shots { grid-auto-columns: 38%; } }
+@media (min-width: 900px) { .shots { grid-auto-flow: row; grid-template-columns: repeat(4, 1fr); grid-auto-columns: auto; overflow-x: visible; } }
+.shot { margin: 0; scroll-snap-align: start; }
+.shot img, .shot-placeholder {
+  width: 100%;
+  aspect-ratio: 1080 / 2340;
+  border-radius: 20px;
+  border: 4px solid #1a1050;
+  box-shadow: var(--shadow);
+  background: #120c2e;
+  object-fit: cover;
+}
+.shot-placeholder {
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px;
+  padding: 14px; text-align: center; color: #fff;
+  background: repeating-linear-gradient(135deg, #2a1b78 0 14px, #33228a 14px 28px);
+  border-style: dashed; border-color: var(--gold);
+}
+.shot-placeholder span { font-family: "Lilita One", system-ui, sans-serif; color: var(--gold); font-size: 1.1rem; line-height: 1.2; }
+.shot-placeholder small { color: #e3ddff; font-weight: 600; font-size: 0.85rem; }
+.shot figcaption { margin-top: 8px; color: var(--muted); font-size: 0.95rem; text-align: center; }
+
+/* ---------- Characters ---------- */
+.characters { background: var(--surface-2); }
+.char {
+  display: flex; flex-direction: column; align-items: center; text-align: center;
+  background:
+    radial-gradient(160px 60px at 50% 92%, rgba(0, 0, 0, 0.18), transparent 70%),
+    linear-gradient(180deg, #4b2fbf, #2a1b78);
+  color: #fff;
+  border: 0;
+}
+.char img { height: 260px; width: auto; object-fit: contain; margin-top: 4px; }
+.char h3 { font-size: 2rem; color: var(--gold); -webkit-text-stroke: 3px #1a1050; paint-order: stroke fill; margin-top: 8px; }
+.char .kit { font-weight: 700; color: var(--cyan); font-size: 0.95rem; margin: 2px 0 10px; }
+.char p { color: #e3ddff; font-size: 0.96rem; }
+
+/* ---------- Promise strip ---------- */
+/* Compact cards of equal height; the text sits in the middle so no empty block gathers at the bottom. */
+.promise .card { text-align: center; padding: 16px 18px; display: flex; flex-direction: column; justify-content: center; }
+.promise strong { display: block; font-family: "Lilita One", system-ui, sans-serif; font-weight: 400; font-size: 1.35rem; line-height: 1.2; margin-bottom: 4px; color: var(--purple); }
+@media (prefers-color-scheme: dark) { .promise strong { color: var(--gold); } }
+
+/* ---------- Footer ---------- */
+.site-footer { background: var(--purple-deep); color: #d9d2ff; padding: 32px 0; font-size: 0.95rem; }
+.site-footer a { color: #fff; }
+.site-footer .wrap { display: flex; flex-wrap: wrap; gap: 8px 24px; justify-content: space-between; }
+.site-footer p { margin: 0; }
+.fine { color: #a99de0; font-size: 0.85rem; }
+
+/* ---------- Policy (long-form text) ---------- */
+.doc { padding: 40px 0 64px; }
+.doc .wrap { max-width: 780px; }
+.doc h1 { font-family: "Lilita One", system-ui, sans-serif; font-weight: 400; font-size: clamp(2.2rem, 8vw, 3.2rem); color: var(--purple); margin: 0 0 6px; }
+@media (prefers-color-scheme: dark) { .doc h1 { color: var(--gold); } }
+.doc h2 { font-family: "Lilita One", system-ui, sans-serif; font-weight: 400; font-size: 1.6rem; margin: 40px 0 8px; color: var(--purple); }
+@media (prefers-color-scheme: dark) { .doc h2 { color: #c9bfff; } }
+.doc h3 { margin: 22px 0 6px; font-size: 1.1rem; }
+.doc p, .doc li { color: var(--text); }
+.doc ul { padding-left: 1.2em; }
+.doc li { margin: 4px 0; }
+.meta { color: var(--muted); margin: 0 0 20px; }
+.summary { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 18px 22px; box-shadow: var(--shadow); }
+.summary ul { margin: 6px 0 0; }
+.draft {
+  background: #fff3c4; color: #4a3500; border: 2px dashed #e0b300; border-radius: 14px; padding: 12px 16px; margin: 0 0 22px; font-weight: 600;
+}
+.toc { background: var(--surface-2); border-radius: 16px; padding: 14px 20px; margin: 18px 0; }
+.toc ol { margin: 6px 0 0; padding-left: 1.3em; }
+.table-wrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 0.95rem; }
+th, td { text-align: left; vertical-align: top; padding: 10px; border-bottom: 1px solid var(--line); }
+th { background: var(--surface-2); }
+
+/* ---------- 404 ---------- */
+.notfound { text-align: center; padding: 80px 16px; }
